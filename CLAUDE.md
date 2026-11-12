@@ -1,7 +1,7 @@
 # Kidmat Yafo — company website
 
 Static one-page site for Kidmat Yafo Megurim (קידמת יפו מגורים). Hebrew, right-to-left, one fluid page for desktop and phone.
-Sister site of Bilu 10 (repo `bilu10`, live at https://bilu10.com). Final domain: kidmatyafo.co.il (DNS at GoDaddy — do not touch without Amir).
+Sister site of Bilu 10 (repo `bilu10`, live at https://bilu10.com). Main domain: kidmatyafo.com (bought at GoDaddy, Nov 2026). The old company site lives on kidmatyafo.co.il (DNS at SPD, ns1/ns2.spd.co.il) and should be redirected here once access is available. Do not touch DNS without Amir.
 
 ## Where the design comes from
 The design is made in a claude.ai canvas ("קידמת יפו — סקיצת אתר חדש").
