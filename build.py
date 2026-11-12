@@ -47,8 +47,8 @@ JS = r"""
     var bad=[];
     if(!name)bad.push(el('ky-name'));
     if(!phone&&!mail)bad.push(el('ky-phone'));
-    ['ky-name','ky-phone'].forEach(function(id){var e=el(id);if(e){e.style.borderBottomColor='#3C3429';e.style.borderBottomWidth='1px';}});
-    if(bad.length){bad.forEach(function(e){if(e){e.style.borderBottomColor='#B3261E';e.style.borderBottomWidth='2px';}});if(bad[0])bad[0].focus();return;}
+    ['ky-name','ky-phone'].forEach(function(id){var e=el(id);if(e){e.style.borderColor='#3C3429';e.style.borderWidth='1px';}});
+    if(bad.length){bad.forEach(function(e){if(e){e.style.borderColor='#B3261E';e.style.borderWidth='2px';}});if(bad[0])bad[0].focus();return;}
     btn.disabled=true;
     try{fetch('https://formsubmit.co/ajax/__INBOX__',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({_subject:'פנייה מאתר קידמת יפו: '+topic,_template:'table',_captcha:'false','נושא':topic,'שם':name,'טלפון':phone,'דוא״ל':mail,'עמוד':location.href})});}catch(e){}
