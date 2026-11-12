@@ -75,6 +75,8 @@ def build():
             raise SystemExit(f'Missing image for /_blob/{b}: add the file to assets/ and its id to assets/blobs.json')
         shutil.copy(os.path.join(ASSETS, BLOB[b]), os.path.join(OUT, 'img', BLOB[b]))
         s = s.replace('/_blob/' + b, 'img/' + BLOB[b])
+    for f in ('favicon-48.png', 'favicon-192.png'):  # square site icons (search engines need a square one)
+        shutil.copy(os.path.join(ASSETS, f), os.path.join(OUT, 'img', f))
     helmet = re.search(r'<helmet>(.*?)</helmet>', s, re.S).group(1).strip()
     body = re.search(r'</helmet>(.*?)</x-dc>', s, re.S).group(1).strip()
     helmet = helmet.replace('</style>', CSS + '</style>')
@@ -92,8 +94,9 @@ def build():
 <meta name="description" content="{DESC}">
 <link rel="canonical" href="{SITE}/">
 <meta name="theme-color" content="#F0EDE4">
-<link rel="icon" type="image/png" href="/img/kidmat-logo.png">
-<link rel="apple-touch-icon" href="/img/kidmat-logo.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/favicon-192.png">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta property="og:site_name" content="קידמת יפו מגורים">
