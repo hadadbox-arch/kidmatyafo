@@ -10,7 +10,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC, ASSETS, OUT = (os.path.join(ROOT, d) for d in ('src', 'assets', 'dist'))
 BLOB = json.load(open(os.path.join(ASSETS, 'blobs.json')))
 
-SITE = 'https://kidmatyafo.com'
+SITE = 'https://kidmatyafo.co.il'
 INBOX = 'hadadbox@gmail.com'   # enquiries from the contact form are emailed here (via formsubmit.co)
 TITLE = 'קידמת יפו מגורים | מגורים והתחדשות עירונית בתל אביב'
 DESC = ('קידמת יפו מגורים יוזמת ובונה פרויקטים למגורים ולהתחדשות עירונית בתל אביב וביפו. '
