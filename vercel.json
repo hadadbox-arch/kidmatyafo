@@ -5,14 +5,66 @@
   "framework": null,
   "cleanUrls": true,
   "redirects": [
-    { "source": "/projects/:path*", "destination": "/#projects", "permanent": true },
-    { "source": "/project/:path*", "destination": "/#projects", "permanent": true },
-    { "source": "/%D7%9E%D7%99-%D7%90%D7%A0%D7%97%D7%A0%D7%95", "destination": "/#company", "permanent": true },
-    { "source": "/מי-אנחנו", "destination": "/#company", "permanent": true },
-    { "source": "/home", "destination": "/", "permanent": true }
+    {
+      "source": "/projects/%D7%98%D7%A9%D7%A8%D7%A0%D7%99%D7%97%D7%95%D7%91%D7%A1-11",
+      "destination": "/#flagship",
+      "permanent": true
+    },
+    {
+      "source": "/projects/טשרניחובס-11",
+      "destination": "/#flagship",
+      "permanent": true
+    },
+    {
+      "source": "/projects/:path*",
+      "destination": "/#projects",
+      "permanent": true
+    },
+    {
+      "source": "/project/:path*",
+      "destination": "/#projects",
+      "permanent": true
+    },
+    {
+      "source": "/%D7%9E%D7%99-%D7%90%D7%A0%D7%97%D7%A0%D7%95",
+      "destination": "/#company",
+      "permanent": true
+    },
+    {
+      "source": "/מי-אנחנו",
+      "destination": "/#company",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/projects",
+      "destination": "/#projects",
+      "permanent": true
+    }
   ],
   "headers": [
-    { "source": "/", "headers": [ { "key": "Cache-Control", "value": "no-cache" } ] },
-    { "source": "/img/(.*)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=604800" } ] }
-  ]
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
+  ],
+  "trailingSlash": false
 }
