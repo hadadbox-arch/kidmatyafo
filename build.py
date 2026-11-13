@@ -36,6 +36,13 @@ JS = r"""
     menu.addEventListener('click',function(e){if(e.target.closest('nav a'))menu.removeAttribute('open');});
     d.addEventListener('click',function(e){if(menu.hasAttribute('open')&&!menu.contains(e.target))menu.removeAttribute('open');});
   }
+  // enlarge buttons: older browsers without the popover feature open the full image in a new tab instead
+  if(!('popover' in HTMLElement.prototype)){
+    d.querySelectorAll('button[popovertarget]').forEach(function(b){
+      b.addEventListener('click',function(){var p=el0(b.getAttribute('popovertarget'));var i=p&&p.querySelector('img');if(i)window.open(i.getAttribute('src'),'_blank');});
+    });
+  }
+  function el0(id){return d.getElementById(id);}
   // contact form
   var btn=d.querySelector('#contact button[type=button]');
   if(!btn)return;
