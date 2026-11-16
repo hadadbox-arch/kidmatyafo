@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Penthouse · Tchernichovsky 10, Tel Aviv</title>
+<meta name="description" content="A one-of-a-kind penthouse on the entire top floor of Tchernichovsky 10, Tel Aviv, with a wood deck and a private pool. Explore it in 3D.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Assistant:wght@400;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#F0EDE4; --ink:#3C3429; --green:#1D341D; --line:rgba(60,52,41,.22); }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#E6E2D7; color:var(--ink); font-family:'Assistant','Helvetica Neue',Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  .page { max-width:480px; margin:0 auto; background:var(--bg); min-height:100vh; overflow:hidden; }
+  .head { padding:34px 24px 22px; }
+  .eyebrow { font-family:'Jost',sans-serif; font-size:12px; line-height:16px; font-weight:500; letter-spacing:.3em; text-transform:uppercase; }
+  h1, h2 { margin:10px 0 0; font-family:'Space Grotesk',sans-serif; font-weight:300; letter-spacing:.05em; text-transform:uppercase; }
+  h1 { font-size:clamp(22px, 7.2vw, 30px); line-height:1.18; white-space:nowrap; } h1 b { font-weight:600; }
+  h2 { font-size:28px; line-height:33px; }
+  .sub { margin:8px 0 0; font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.2em; text-transform:uppercase; opacity:.75; }
+  .live { height:min(600px, 78vh); border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bg); }
+  .live iframe { width:100%; height:100%; border:0; display:block; }
+  .full { display:block; margin:12px 24px 0; padding:11px; text-align:center; font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:500; background:var(--bg); color:var(--ink); border:1px solid var(--ink); cursor:pointer; border-radius:0; width:calc(100% - 48px); }
+  section { padding:38px 24px 0; }
+  .lead { margin:12px 0 0; font-family:'Space Grotesk',sans-serif; font-size:19px; line-height:27px; letter-spacing:-.01em; }
+  p { margin:14px 0 0; font-size:17px; line-height:27px; }
+  .facts { margin:28px 0 0; border-top:1px solid var(--line); }
+  .facts div { display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); }
+  .facts dt { font-family:'Jost',sans-serif; font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:500; padding-top:3px; }
+  .facts dd { margin:0; font-family:'Space Grotesk',sans-serif; font-size:17px; text-align:right; }
+  .bld { display:block; width:100%; aspect-ratio:1/1; object-fit:cover; margin:22px 0 0; }
+  .mapwrap { margin:20px 0 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .map { display:block; width:100%; height:auto; }
+  .walk { list-style:none; margin:0; padding:0; }
+  .walk li { display:flex; align-items:center; gap:12px; padding:13px 0; border-bottom:1px solid var(--line); font-family:'Space Grotesk',sans-serif; font-size:16px; }
+  .walk span { width:22px; height:22px; border-radius:11px; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; flex-shrink:0; }
+  .walk b { margin-left:auto; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:500; }
+  .mapnote { font-size:13px; line-height:19px; opacity:.7; margin-top:12px; }
+  .legal { padding:36px 24px 48px; font-size:13px; line-height:20px; opacity:.72; }
+  .reveal { opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity:1; transform:none; }
+  #tour { position:fixed; inset:0; z-index:20; background:var(--bg); display:none; flex-direction:column; }
+  #tour.open { display:flex; }
+  #tour .bar { height:48px; flex-shrink:0; display:flex; align-items:center; padding:0 12px; border-bottom:1px solid var(--line); }
+  #tour .bar button { font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:500; background:var(--bg); color:var(--ink); border:1px solid var(--ink); padding:9px 12px; cursor:pointer; border-radius:0; }
+  #tour iframe { flex:1; width:100%; border:0; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="head">
+    <div class="eyebrow">Penthouse</div>
+    <h1><b>Tchernichovsky 10</b><br>House</h1>
+    <div class="sub">Tel Aviv</div>
+  </div>
+
+  <div class="live"><iframe id="inline3d" src="/penthouse/3d#embed" title="Interactive 3D model of the penthouse"></iframe></div>
+  <button class="full" id="open3d" aria-haspopup="dialog">Open the 3D model full screen</button>
+
+  <section class="reveal">
+    <div class="eyebrow">The penthouse</div>
+    <h2>One home, one entire floor</h2>
+    <p class="lead">A one-of-a-kind penthouse that takes the whole top floor of Tchernichovsky 10: 160 sqm, open to all four directions.</p>
+    <p>Light and air come in from every side. Inside, 85 sqm of designed living space in three rooms: an open living room and kitchen behind a wall of glass, and two bedrooms.</p>
+    <p>Outside, a 65 sqm wood deck surrounds the home, with an outdoor kitchen and a private pool. Nothing above you, nobody beside you.</p>
+    <dl class="facts">
+      <div><dt>Total</dt><dd>160 sqm</dd></div>
+      <div><dt>Interior</dt><dd>85 sqm</dd></div>
+      <div><dt>Deck with pool</dt><dd>65 sqm</dd></div>
+      <div><dt>Rooms</dt><dd>3</dd></div>
+      <div><dt>Exposures</dt><dd>4</dd></div>
+      <div><dt>Floor</dt><dd>One entire floor</dd></div>
+    </dl>
+  </section>
+
+  <section class="reveal">
+    <div class="eyebrow">The building</div>
+    <h2>Tchernichovsky 10</h2>
+    <img class="bld" src="/img/proj-tchernichovsky.jpg" alt="Rendering of the building at Tchernichovsky 10, Tel Aviv: a white corner building with balconies, dark shutters, planting and a pergola on the roof">
+    <p>A new, completed building on the corner of Tchernichovsky and HaMaccabi streets, in the middle of Tel Aviv. The Carmel Market is around the corner and the sea is a short walk away. The penthouse is its top floor.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="eyebrow">The location</div>
+    <h2>Everything on foot</h2>
+  </section>
+  <div class="mapwrap reveal">
+<svg class="map" viewBox="0 0 390 340" role="img" aria-label="Schematic map of the streets around Tchernichovsky 10: the sea to the west, Allenby, King George, Bialik, Sheinkin, Nachalat Binyamin and the Carmel Market, with numbered walking destinations">
+<rect width="390" height="340" fill="#EDE9DF"/>
+<path d="M0 0 L121.1 -102.6 L67.7 92.1 L21.8 256.9 L-29.1 421.6 L0 340 Z" fill="#C7D6D8"/>
+<path d="M98.2 71.1 L149.2 113.1 L189.9 161.0 L202.6 229.9 L245.9 316.8 L317.3 406.7" fill="none" stroke="#CFC8B8" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M202.6 229.9 L251.0 161.0 L291.8 98.1 L327.4 32.2 L393.7 -87.6" fill="none" stroke="#CFC8B8" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M205.2 188.0 L223.0 131.1 L248.5 62.2 L279.1 -18.7" fill="none" stroke="#CFC8B8" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M223.0 131.1 L263.8 140.0" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M182.3 149.0 L202.6 104.1" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M207.7 229.9 L309.6 253.9 L437.0 280.8" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M195.0 238.9 L200.1 331.8 L210.3 421.6" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M187.4 232.9 L144.1 292.8 L95.7 361.7" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M110.9 -39.7 L279.1 -12.7 L386.0 8.2" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M197.5 -102.6 L149.2 113.1" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M159.3 -102.6 L103.3 71.1" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M116.0 38.2 L248.5 59.2" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M322.3 41.2 L291.8 -102.6" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M291.8 98.1 L424.2 83.1" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M251.0 161.0 L424.2 182.0" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M245.9 316.8 L144.1 292.8" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M67.7 197.0 L189.9 161.0" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42.2 280.8 L202.6 229.9" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M386.0 8.2 L373.3 197.0 L360.6 346.7" fill="none" stroke="#CFC8B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M187.4 232.9 L144.1 292.8 L95.7 361.7" fill="none" stroke="#B9B09C" stroke-width="6.5" stroke-linecap="round"/>
+<text x="243.4" y="292.8" transform="rotate(52 243.4 292.8)" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="9.5" font-weight="500" fill="#3C3429" stroke="#EDE9DF" stroke-width="3" paint-order="stroke" letter-spacing=".03em">Allenby</text>
+<text x="327.4" y="56.2" transform="rotate(-58 327.4 56.2)" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="9.5" font-weight="500" fill="#3C3429" stroke="#EDE9DF" stroke-width="3" paint-order="stroke" letter-spacing=".03em">King George</text>
+<text x="240.8" y="44.2" transform="rotate(-68 240.8 44.2)" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="9.5" font-weight="600" fill="#3C3429" stroke="#EDE9DF" stroke-width="3" paint-order="stroke" letter-spacing=".03em">Tchernichovsky</text>
+<text x="352.9" y="262.9" transform="rotate(12 352.9 262.9)" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="9.5" font-weight="500" fill="#3C3429" stroke="#EDE9DF" stroke-width="3" paint-order="stroke" letter-spacing=".03em">Sheinkin</text>
+<text x="195.0" y="-33.7" transform="rotate(7 195.0 -33.7)" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="9.5" font-weight="500" fill="#3C3429" stroke="#EDE9DF" stroke-width="3" paint-order="stroke" letter-spacing=".03em">Bograshov</text>
+<text x="113.5" y="316.8" transform="rotate(-52 113.5 316.8)" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="9.5" font-weight="500" fill="#3C3429" stroke="#EDE9DF" stroke-width="3" paint-order="stroke" letter-spacing=".03em">Carmel Market</text>
+<text x="34" y="150" transform="rotate(-76 34 150)" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="9.5" font-weight="500" fill="#3C3429" letter-spacing=".12em">THE SEA</text>
+<rect x="212.0" y="120.1" width="22" height="22" fill="#3C3429" stroke="#F0EDE4" stroke-width="2"/><text x="223.0" y="135.1" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" fill="#F0EDE4">10</text>
+<circle cx="195.0" cy="104.1" r="10.5" fill="#1D341D" stroke="#F0EDE4" stroke-width="2"/><text x="195.0" y="108.1" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="600" fill="#fff">1</text>
+<circle cx="167.0" cy="259.9" r="10.5" fill="#1D341D" stroke="#F0EDE4" stroke-width="2"/><text x="167.0" y="263.9" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="600" fill="#fff">2</text>
+<circle cx="200.1" cy="292.8" r="10.5" fill="#1D341D" stroke="#F0EDE4" stroke-width="2"/><text x="200.1" y="296.8" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="600" fill="#fff">3</text>
+<circle cx="261.2" cy="241.9" r="10.5" fill="#1D341D" stroke="#F0EDE4" stroke-width="2"/><text x="261.2" y="245.9" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="600" fill="#fff">4</text>
+<circle cx="299.4" cy="89.1" r="10.5" fill="#1D341D" stroke="#F0EDE4" stroke-width="2"/><text x="299.4" y="93.1" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="600" fill="#fff">5</text>
+<circle cx="332.5" cy="29.2" r="10.5" fill="#1D341D" stroke="#F0EDE4" stroke-width="2"/><text x="332.5" y="33.2" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="600" fill="#fff">6</text>
+<circle cx="65.1" cy="98.1" r="10.5" fill="#1D341D" stroke="#F0EDE4" stroke-width="2"/><text x="65.1" y="102.1" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="600" fill="#fff">7</text>
+</svg>
+  </div>
+  <section class="reveal" style="padding-top:0">
+    <ol class="walk">
+      <li><span>1</span>Bialik Street<b>2 min</b></li>
+      <li><span>2</span>Carmel Market<b>3 min</b></li>
+      <li><span>3</span>Nachalat Binyamin<b>3 min</b></li>
+      <li><span>4</span>Sheinkin Street<b>3 min</b></li>
+      <li><span>5</span>Meir Park<b>4 min</b></li>
+      <li><span>6</span>Dizengoff Center<b>5 min</b></li>
+      <li><span>7</span>The sea<b>6 min</b></li>
+    </ol>
+    <p class="mapnote">Walking times are approximate. Schematic map, not to scale.</p>
+  </section>
+
+  <div class="legal">Illustration only. All plans, renderings, 3D models, furniture, finishes and materials are for illustrative purposes and may differ from the final execution. Areas are approximate. Only the signed sale agreement, specifications and accompanying plans shall be binding.</div>
+</div>
+
+<div id="tour" role="dialog" aria-label="3D model of the penthouse" aria-modal="true">
+  <div class="bar"><button id="close3d">← Back to the page</button></div>
+  <iframe id="frame" title="Interactive 3D model" allow="fullscreen"></iframe>
+</div>
+<script>
+  const tour = document.getElementById('tour'), frame = document.getElementById('frame');
+  document.getElementById('open3d').onclick = () => { if (!frame.getAttribute('src')) frame.setAttribute('src', '/penthouse/3d'); tour.classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('close3d').focus(); };
+  document.getElementById('close3d').onclick = () => { tour.classList.remove('open'); document.body.style.overflow = ''; document.getElementById('open3d').focus(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && tour.classList.contains('open')) document.getElementById('close3d').click(); });
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold:.08 }) : null;
+  document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+</script>
+</body>
+</html>

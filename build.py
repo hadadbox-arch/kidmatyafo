@@ -125,6 +125,9 @@ def build():
         f'  <url><loc>{SITE}/</loc></url>\n</urlset>\n')
     # Google Search Console ownership file for https://kidmatyafo.co.il (keep it, or the site loses its verification)
     open(os.path.join(OUT, 'google57f8a8dc096e3a3e.html'), 'w').write('google-site-verification: google57f8a8dc096e3a3e.html')
+    # the Tchernichovsky 10 penthouse landing page (/penthouse) and its 3D plan (/penthouse/3d) are prebuilt in penthouse/ and only copied
+    if os.path.isdir(os.path.join(ROOT, 'penthouse')):
+        shutil.copytree(os.path.join(ROOT, 'penthouse'), os.path.join(OUT, 'penthouse'))
     print('built dist/: index.html', len(html) // 1024, 'KB,', len(os.listdir(os.path.join(OUT, 'img'))), 'images')
 
 if __name__ == '__main__':

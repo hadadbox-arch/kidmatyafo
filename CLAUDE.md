@@ -21,3 +21,9 @@ The design is made in a claude.ai canvas ("קידמת יפו — סקיצת את
 2. Run `python3 build.py` — it must finish without "Missing image".
 3. Check `dist/index.html` at 1440 wide and at 390 wide.
 4. Commit and push to `main`.
+
+## The Tchernichovsky 10 penthouse landing page
+`/penthouse` is an English landing page for the penthouse at Tchernichovsky 10, with its live 3D plan (`/penthouse/3d`) embedded.
+Both are prebuilt files in `penthouse/` (`index.html`, `3d.html`); `build.py` only copies the folder into `dist/`. The page uses
+`/img/proj-tchernichovsky.jpg`, which the home page already ships. It was added in code, not in the canvas. The pages carry `noindex`
+until Amir approves the texts.
