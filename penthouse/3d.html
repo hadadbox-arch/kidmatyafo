@@ -42,7 +42,7 @@
           background:var(--ink); color:var(--bg); padding:10px 16px; pointer-events:none; transition:opacity .6s; }
 </style>
 </head>
-<body>
+<body><script>if(location.hash==='#embed')document.documentElement.classList.add('embed');</script><style>html.embed header{display:none} html.embed #dimBtn{top:12px}</style>
 <div id="stage"></div>
 <div id="labels"></div>
 <header>
@@ -1524,29 +1524,38 @@ function placeDims() { const w = stage.clientWidth, h = stage.clientHeight, plac
 
 // ---------- views
 const VIEWS = [
-  { id:'overview', t:'Overview', pos:[-23, 43, 36], tgt:[0, 0, .4] },
-  { id:'plan', t:'Plan', pos:[0, 63, 2.6], tgt:[0, 0, 1.0] },
-  { id:'living', t:'Living', pos:[-22.5, 41, 25], tgt:[-2.6, 0, -.6] },
-  { id:'pool', t:'Pool', pos:[-14, 38, 41], tgt:[1.2, 0, 4.0], hl:true },
-  { id:'bedrooms', t:'Bedrooms', pos:[25, 42, -23], tgt:[3.4, 0, -2.2] },
-  { id:'terrace', t:'Terrace', pos:[-37, 34, 14.5], tgt:[-3.0, 0, .8] },
+  { id:'overview', box:[-7.3, -7.3, 7.2, 7.4], t:'Overview', pos:[-23, 43, 36], tgt:[0, 0, .4] },
+  { id:'plan', box:[-7.3, -7.3, 7.2, 7.4], t:'Plan', pos:[0, 63, 2.6], tgt:[0, 0, 1.0] },
+  { id:'living', box:[-5.4, -6.7, -.5, 2.4], t:'Living', pos:[-22.5, 41, 25], tgt:[-2.6, 0, -.6] },
+  { id:'pool', box:[-1.9, 1.4, 6.5, 7.4], t:'Pool', pos:[-14, 38, 41], tgt:[1.2, 0, 4.0], hl:true },
+  { id:'bedrooms', box:[-.7, -7.3, 7.2, 1.5], t:'Bedrooms', pos:[25, 42, -23], tgt:[3.4, 0, -2.2] },
+  { id:'terrace', box:[-7.3, -6.7, -3.6, 5.3], t:'Terrace', pos:[-37, 34, 14.5], tgt:[-3.0, 0, .8] },
 ];
 const chips = document.getElementById('chips'); let anim = null;
 function fit() { const a = stage.clientWidth / stage.clientHeight; return a < 1 ? Math.min(1.7, .5 / a + .5) : 1; }
+function frameView(v) { const b = v.box, dir = new THREE.Vector3(...v.pos).sub(new THREE.Vector3(...v.tgt)).normalize(), t = new THREE.Vector3((b[0] + b[2]) / 2, .5, (b[1] + b[3]) / 2); let dist = 40;
+  const cr = renderer.domElement.getBoundingClientRect(), W = cr.width, H = cr.height, hd = document.querySelector('header').getBoundingClientRect(), db = dimBtn.getBoundingClientRect();
+  const top = Math.max(hd.bottom, db.bottom) - cr.top + 10, bot = chips.getBoundingClientRect().top - cr.top - 14, L = 12, R = W - 12, fc = camera.clone(), q = new THREE.Vector3(), rt = new THREE.Vector3(), up = new THREE.Vector3();
+  for (let it = 0; it < 6; it++) { fc.position.copy(t).addScaledVector(dir, dist); fc.lookAt(t); fc.updateMatrixWorld(); fc.matrixWorldInverse.copy(fc.matrixWorld).invert(); let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    for (let i = 0; i < 8; i++) { q.set(i & 1 ? b[2] : b[0], i & 2 ? 1.5 : 0, i & 4 ? b[3] : b[1]).project(fc); const sx = (q.x * .5 + .5) * W, sy = (-q.y * .5 + .5) * H; x0 = Math.min(x0, sx); x1 = Math.max(x1, sx); y0 = Math.min(y0, sy); y1 = Math.max(y1, sy); }
+    const hh = dist * Math.tan(camera.fov * Math.PI / 360), k = Math.max((x1 - x0) / (R - L), (y1 - y0) / (bot - top)) / (v.id === 'overview' || v.id === 'plan' ? .97 : .86);
+    rt.setFromMatrixColumn(fc.matrixWorld, 0); up.setFromMatrixColumn(fc.matrixWorld, 1);
+    t.addScaledVector(rt, ((x0 + x1) / 2 - (L + R) / 2) / (W / 2) * hh * camera.aspect).addScaledVector(up, -((y0 + y1) / 2 - (top + bot) / 2) / (H / 2) * hh); dist *= k; }
+  return { tgt:t, pos:t.clone().addScaledVector(dir, dist) }; }
 function go(v, instant) {
   labEl.classList.toggle('sm', v.id === 'overview'); L1.visible = !!v.roof; L0.visible = !v.roof; L1.position.y = 0; controls.autoRotate = false;
   [...chips.children].forEach(b => { const on = b.dataset.id === v.id; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
-  const tgt = new THREE.Vector3(...v.tgt), pos = new THREE.Vector3(...v.pos).sub(tgt).multiplyScalar(fit()).add(tgt);
+  const fv = frameView(v), tgt = fv.tgt, pos = fv.pos;
   if (instant) { camera.position.copy(pos); controls.target.copy(tgt); controls.update(); return; }
   anim = { p0:camera.position.clone(), t0:controls.target.clone(), p1:pos, t1:tgt, s:performance.now(), d:1100 };
 }
 VIEWS.forEach(v => { const b = document.createElement('button'); b.textContent = v.t; b.dataset.id = v.id; if (v.roof || v.hl) b.className = 'roof'; b.onclick = () => go(v); chips.appendChild(b); });
 window.GO = (id) => go(VIEWS.find(v => v.id === id), true);
 function resize() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
-window.addEventListener('resize', resize); resize(); go(VIEWS[0], true);
+window.addEventListener('resize', () => { resize(); const cur = VIEWS.find(v => chips.querySelector('.on') && chips.querySelector('.on').dataset.id === v.id); if (cur && !controls.autoRotate) {} }); resize(); go(VIEWS[0], true);
 controls.autoRotate = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
-if (controls.autoRotate) { const v0 = VIEWS[0], tg = new THREE.Vector3(...v0.tgt), p1 = new THREE.Vector3(...v0.pos).sub(tg).multiplyScalar(fit()).add(tg);
-  camera.position.set(p1.x * .2, p1.y * 1.9, p1.z * .45 + 4); controls.update(); anim = { p0:camera.position.clone(), t0:tg.clone(), p1, t1:tg, s:performance.now() + 700, d:2800 }; }
+if (controls.autoRotate) { const fv0 = frameView(VIEWS[0]), tg = fv0.tgt, p1 = fv0.pos;
+  camera.position.set(tg.x + (p1.x - tg.x) * .2, p1.y * 1.9, tg.z + (p1.z - tg.z) * .45 + 4); controls.target.copy(tg); controls.update(); anim = { p0:camera.position.clone(), t0:tg.clone(), p1, t1:tg, s:performance.now() + 700, d:2800 }; }
 const hint = document.getElementById('hint');
 const stop = () => { controls.autoRotate = false; hint.style.opacity = 0; };
 renderer.domElement.addEventListener('pointerdown', stop); renderer.domElement.addEventListener('wheel', stop, { passive:true });
@@ -1558,6 +1567,5 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 </script>
-<style>html.embed header{display:none} html.embed #dimBtn{top:12px} html.embed #stage, html.embed #labels{top:-64px;bottom:64px}</style><script>if(location.hash==='#embed')document.documentElement.classList.add('embed');</script>
 </body>
 </html>
