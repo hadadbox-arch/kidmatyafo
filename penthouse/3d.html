@@ -1538,7 +1538,7 @@ function frameView(v) { const b = v.box, dir = new THREE.Vector3(...v.pos).sub(n
   const top = Math.max(hd.bottom, db.bottom) - cr.top + 10, bot = chips.getBoundingClientRect().top - cr.top - 14, L = 12, R = W - 12, fc = camera.clone(), q = new THREE.Vector3(), rt = new THREE.Vector3(), up = new THREE.Vector3();
   for (let it = 0; it < 6; it++) { fc.position.copy(t).addScaledVector(dir, dist); fc.lookAt(t); fc.updateMatrixWorld(); fc.matrixWorldInverse.copy(fc.matrixWorld).invert(); let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
     for (let i = 0; i < 8; i++) { q.set(i & 1 ? b[2] : b[0], i & 2 ? 1.5 : 0, i & 4 ? b[3] : b[1]).project(fc); const sx = (q.x * .5 + .5) * W, sy = (-q.y * .5 + .5) * H; x0 = Math.min(x0, sx); x1 = Math.max(x1, sx); y0 = Math.min(y0, sy); y1 = Math.max(y1, sy); }
-    const hh = dist * Math.tan(camera.fov * Math.PI / 360), k = Math.max((x1 - x0) / (R - L), (y1 - y0) / (bot - top)) / (v.id === 'overview' || v.id === 'plan' ? .97 : .86);
+    const hh = dist * Math.tan(camera.fov * Math.PI / 360), k = Math.max((x1 - x0) / (R - L), (y1 - y0) / (bot - top)) / (v.id === 'overview' ? 1.42 : v.id === 'plan' ? .97 : .86);
     rt.setFromMatrixColumn(fc.matrixWorld, 0); up.setFromMatrixColumn(fc.matrixWorld, 1);
     t.addScaledVector(rt, ((x0 + x1) / 2 - (L + R) / 2) / (W / 2) * hh * camera.aspect).addScaledVector(up, -((y0 + y1) / 2 - (top + bot) / 2) / (H / 2) * hh); dist *= k; }
   return { tgt:t, pos:t.clone().addScaledVector(dir, dist) }; }
