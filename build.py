@@ -73,6 +73,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 """
 
+BILU_LINKS = [
+    ('ביל״ו 10 מחבר', '<a href="https://bilu10.com/he/" style="color: inherit; text-underline-offset: 3px">ביל״ו 10</a> מחבר'),
+    ('>BILU 10</div>', '><a href="https://bilu10.com/" style="color: inherit; text-decoration: none">BILU 10</a></div>'),
+]
+
 def build():
     shutil.rmtree(OUT, ignore_errors=True)
     os.makedirs(os.path.join(OUT, 'img'))
@@ -86,6 +91,12 @@ def build():
         shutil.copy(os.path.join(ASSETS, f), os.path.join(OUT, 'img', f))
     helmet = re.search(r'<helmet>(.*?)</helmet>', s, re.S).group(1).strip()
     body = re.search(r'</helmet>(.*?)</x-dc>', s, re.S).group(1).strip()
+    # links to the Bilu 10 project site on the project's name (no wording change), so search engines tie the name to bilu10.com.
+    # Added here and not in the canvas, so a canvas sync keeps them.
+    for old, new in BILU_LINKS:
+        if old not in body:
+            print('WARNING: Bilu 10 link not added, text not found:', old)
+        body = body.replace(old, new, 1)
     helmet = helmet.replace('</style>', CSS + '</style>')
     # every image below the opening screen loads lazily
     first = [True]
