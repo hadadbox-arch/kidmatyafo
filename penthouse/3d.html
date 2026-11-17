@@ -39,6 +39,15 @@
            background:transparent; border:1px solid var(--ink); padding:10px 4px; white-space:nowrap; cursor:pointer; min-width:0; border-radius:0; }
   button.on { background:var(--ink); color:var(--bg); }
   button:focus-visible { outline:2px solid var(--green); outline-offset:2px; }
+  /* on/off toggles: areas + cm */
+  #ctl button { display:flex; align-items:center; justify-content:center; gap:5px; width:auto; height:26px; padding:0 9px 0 6px; border:1px solid var(--ink); border-radius:13px; background:var(--bg); color:var(--ink); font-size:10px; line-height:1; letter-spacing:.06em; box-sizing:border-box; cursor:pointer; position:static; box-shadow:0 1px 3px rgba(60,52,41,.22); transition:background .15s, color .15s, transform .08s; -webkit-tap-highlight-color:transparent; }
+  #ctl button:active { transform:scale(.94); }
+  #ctl button span:last-child { text-transform:none; font-size:11px; }
+  #ctl button .bx { position:relative; flex:none; display:inline-block; width:16px; height:11px; border:1px solid currentColor; border-radius:6px; background:transparent; box-shadow:none; box-sizing:border-box; opacity:.7; }
+  #ctl button .bx::after { content:''; position:absolute; top:1px; left:1px; width:7px; height:7px; border-radius:50%; background:currentColor; transition:left .15s; }
+  #ctl button.on { background:var(--ink); color:var(--bg); }
+  #ctl button.on .bx { background:rgba(240,237,228,.3); box-shadow:none; opacity:1; }
+  #ctl button.on .bx::after { left:6px; }
   .note { font-size:10px; opacity:.65; letter-spacing:.04em; padding:0 2px; }
   #hint { position:fixed; left:50%; bottom:176px; transform:translateX(-50%); white-space:nowrap; z-index:4; font-size:11px; letter-spacing:.2em; text-transform:uppercase;
           background:var(--ink); color:var(--bg); padding:10px 16px; pointer-events:none; transition:opacity .6s; }
@@ -53,7 +62,7 @@
   <div class="meta">Two terraces · Pool</div>
 </header>
 <div id="hint">Drag to rotate · Pinch to zoom</div>
-<div id="ctl"><button id="areaBtn" class="on" aria-pressed="true">Areas</button><button id="dimBtn" aria-pressed="false">cm</button></div>
+<div id="ctl"><button id="areaBtn" aria-pressed="false"><span class="bx"></span><span>Areas</span></button><button id="dimBtn" aria-pressed="false"><span class="bx"></span><span>cm</span></button></div>
 <nav>
   <div class="chips" id="chips"></div>
   <div class="note">Illustration only; furniture and materials are indicative. The only binding plan is the one in the sale documents.</div>
@@ -1534,7 +1543,7 @@ const DIMS = new THREE.Group(); DIMS.visible = false; L0.add(DIMS); const dimLab
   lbox(len, .008, .012, cx, y, cz, dimMat, DIMS, false).rotation.y = ang;
   [[d.x0, d.z0], [d.x1, d.z1]].forEach(q => { lbox(.012, .008, .14, q[0], y, q[1], dimMat, DIMS, false).rotation.y = ang; });
   const e = document.createElement('div'); e.className = 'lab dim'; e.textContent = d.t; e.style.opacity = 0; labEl.appendChild(e); dimLabs.push({ e, grp:d.g || null, v:new THREE.Vector3(cx, y, cz), a:new THREE.Vector3(d.x0, y, d.z0), b:new THREE.Vector3(d.x1, y, d.z1) }); });
-let AREAS = true; const areaBtn = document.getElementById('areaBtn'); areaBtn.onclick = () => { AREAS = !AREAS; areaBtn.classList.toggle('on', AREAS); areaBtn.setAttribute('aria-pressed', AREAS); };
+let AREAS = false; const areaBtn = document.getElementById('areaBtn'); areaBtn.onclick = () => { AREAS = !AREAS; areaBtn.classList.toggle('on', AREAS); areaBtn.setAttribute('aria-pressed', AREAS); };
 const dimBtn = document.getElementById('dimBtn'); dimBtn.onclick = () => { DIMS.visible = !DIMS.visible; dimBtn.classList.toggle('on', DIMS.visible); dimBtn.setAttribute('aria-pressed', DIMS.visible); };
 function placeDims() { const w = stage.clientWidth, h = stage.clientHeight, placed = [], best = {};
   // on-screen length of every line; in a small room only the side that reads best from this angle gets its figure
