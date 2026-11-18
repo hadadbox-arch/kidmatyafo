@@ -62,7 +62,7 @@
   <div class="meta">Two terraces · Pool</div>
 </header>
 <div id="hint">Drag to rotate · Pinch to zoom</div>
-<div id="ctl"><button id="areaBtn" class="on" aria-pressed="true"><span class="bx"></span><span>Areas</span></button><button id="dimBtn" aria-pressed="false"><span class="bx"></span><span>cm</span></button></div>
+<div id="ctl"><button id="areaBtn" aria-pressed="false"><span class="bx"></span><span>Areas</span></button><button id="dimBtn" aria-pressed="false"><span class="bx"></span><span>cm</span></button></div>
 <nav>
   <div class="chips" id="chips"></div>
   <div class="note">Illustration only; furniture and materials are indicative. The only binding plan is the one in the sale documents.</div>
@@ -1543,7 +1543,7 @@ const DIMS = new THREE.Group(); DIMS.visible = false; L0.add(DIMS); const dimLab
   lbox(len, .008, .012, cx, y, cz, dimMat, DIMS, false).rotation.y = ang;
   [[d.x0, d.z0], [d.x1, d.z1]].forEach(q => { lbox(.012, .008, .14, q[0], y, q[1], dimMat, DIMS, false).rotation.y = ang; });
   const e = document.createElement('div'); e.className = 'lab dim'; e.textContent = d.t; e.style.opacity = 0; labEl.appendChild(e); dimLabs.push({ e, grp:d.g || null, v:new THREE.Vector3(cx, y, cz), a:new THREE.Vector3(d.x0, y, d.z0), b:new THREE.Vector3(d.x1, y, d.z1) }); });
-let AREAS = true; const areaBtn = document.getElementById('areaBtn'); areaBtn.onclick = () => { AREAS = !AREAS; areaBtn.classList.toggle('on', AREAS); areaBtn.setAttribute('aria-pressed', AREAS); };
+let AREAS = false; const areaBtn = document.getElementById('areaBtn'); areaBtn.onclick = () => { AREAS = !AREAS; areaBtn.classList.toggle('on', AREAS); areaBtn.setAttribute('aria-pressed', AREAS); };
 const dimBtn = document.getElementById('dimBtn'); dimBtn.onclick = () => { DIMS.visible = !DIMS.visible; dimBtn.classList.toggle('on', DIMS.visible); dimBtn.setAttribute('aria-pressed', DIMS.visible); };
 function placeDims() { const w = stage.clientWidth, h = stage.clientHeight, placed = [], best = {};
   // on-screen length of every line; in a small room only the side that reads best from this angle gets its figure

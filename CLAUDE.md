@@ -27,3 +27,6 @@ The design is made in a claude.ai canvas ("קידמת יפו — סקיצת את
 Both are prebuilt files in `penthouse/` (`index.html`, `3d.html`); `build.py` only copies the folder into `dist/`. The page uses
 `/img/proj-tchernichovsky.jpg`, which the home page already ships. It was added in code, not in the canvas. The pages carry `noindex`
 until Amir approves the texts.
+
+## 3D plans: area names start off (Amir, 19 Nov 2026)
+Every 3D plan opens with the area names off and the cm figures off; the Areas and cm switches turn them on. Do not ship a 3D page with Areas on by default.
